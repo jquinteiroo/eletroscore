@@ -8,4 +8,5 @@
 .street-map .leaflet-popup-content{font:12px/1.55 'DM Sans',sans-serif;color:#193b30}
 .street-map .leaflet-popup-content strong{font-size:13px}
 .street-map .leaflet-container{font-family:'DM Sans',sans-serif}
+.side-column .sticky{position:static}
 @media(max-width:600px){.street-map{height:350px}.map-panel .legend{font-size:10px}}
