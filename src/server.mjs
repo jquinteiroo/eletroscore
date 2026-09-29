@@ -80,7 +80,7 @@ const server=http.createServer(async(req,res)=>{
   const target=path.resolve(ROOT,rel);
   if(!target.startsWith(ROOT+path.sep))throw new Error('Caminho inválido.');
   const content=await readFile(target);
-  res.writeHead(200,{'Content-Type':mime[path.extname(target)]||'application/octet-stream','Cache-Control':'public, max-age=3600'});res.end(content);
+  res.writeHead(200,{'Content-Type':mime[path.extname(target)]||'application/octet-stream','Cache-Control':'no-cache'});res.end(content);
  }catch(e){const missing=e.code==='ENOENT';res.writeHead(missing?404:400,{'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify({error:missing?'Página não encontrada.':e.message}));}
 });
 if(process.env.NODE_ENV!=='test')server.listen(PORT,()=>console.log(`EletroScore em http://localhost:${PORT}`));
