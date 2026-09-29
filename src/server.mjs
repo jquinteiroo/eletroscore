@@ -2,12 +2,12 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
-import {cleanCity,key,curate,overpassQuery,publicResult,surveyRadius,municipalDemand} from './core.mjs';
+import {cleanCity,key,curate,overpassQuery,publicResult,surveyRadius,municipalDemand,enrichReport} from './core.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../public');
 const PORT=Number(process.env.PORT)||3000;
 const cache=new Map();
-const seeded=new Map([['pocosdecaldas','pocos'],['vinhedo','vinhedo']]);
+const seeded=new Map([['pocosdecaldas',{file:'pocos',uf:'MG'}],['vinhedo',{file:'vinhedo',uf:'SP'}]]);
 let nextNominatim=0;
 const inFlight=new Map();
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml'};
@@ -38,8 +38,9 @@ async function collectPlaces(geo){
 }
 async function analyze(raw){
  const city=cleanCity(raw),k=key(city.split(',')[0]);
- if(seeded.has(k)){
-  const seed=JSON.parse(await readFile(path.join(ROOT,'data',`${seeded.get(k)}.json`),'utf8'));
+ const pilot=seeded.get(k),requestedUF=city.match(/,\s*([a-z]{2})$/i)?.[1].toUpperCase();
+ if(pilot&&(!requestedUF||requestedUF===pilot.uf)){
+  const seed=JSON.parse(await readFile(path.join(ROOT,'data',`${pilot.file}.json`),'utf8'));
   return publicResult(city,seed);
  }
  const ck=key(city),hit=cache.get(ck);
@@ -64,7 +65,9 @@ async function analyzeExternal(city,ck){
  const coverage=radiusKm===null?'município cadastrado no OSM':`área central em raio aproximado de ${radiusKm} km; pode incluir municípios vizinhos`;
  const region=geo.address?.['ISO3166-2-lvl4']?.split('-')[1]??({saopaulo:'SP',minasgerais:'MG'})[key(geo.address?.state??'')];
  const abve=municipal?region==='SP'?{sp:178720,campinas:11284,jundiai:3683,valinhos:1885}:{mg:44682,pousoAlegre:630,varginha:353}:undefined;
- const value={city:geo.display_name.split(',').slice(0,2).join(','),kind:'openstreetmap',date:new Date().toISOString().slice(0,10),area:radiusKm===null?geo.boundingbox?.map(Number):null,coverage,...places,demand:municipal?.plugin??null,demandStatus:municipal?`${municipal.source}; ${municipal.period}`:'Municipal ABVE ainda não integrado para esta cidade',abve,sources:{osm:['OpenStreetMap / Overpass','https://www.openstreetmap.org/copyright','Cadastros públicos colaborativos; dados podem estar incompletos ou desatualizados.'],abve:['ABVE Data — Geografia da Eletromobilidade','https://abve.org.br/abve-data/bi-geografia-da-eletromobilidade/','BEV + PHEV, veículos leves, jan/2022–ago/2026; consulta dos pilotos.']},notes:'A busca é uma amostra territorial; nenhum cadastro confirma fluxo, potência disponível ou funcionamento dos carregadores.'};
+ const box=geo.boundingbox?.map(Number);
+ const area=radiusKm===null&&box?.length===4&&box.every(Number.isFinite)?[box[2],box[0],box[3],box[1]]:null;
+ const value=enrichReport({city:geo.display_name.split(',').slice(0,2).join(','),kind:'openstreetmap',date:new Date().toISOString().slice(0,10),area,coverage,...places,demand:municipal?.plugin??null,demandStatus:municipal?`${municipal.source}; ${municipal.period}`:'Municipal ABVE ainda não integrado para esta cidade',abve,sources:{osm:['OpenStreetMap / Overpass','https://www.openstreetmap.org/copyright','Cadastros públicos colaborativos; dados podem estar incompletos ou desatualizados.'],abve:['ABVE Data — Geografia da Eletromobilidade','https://abve.org.br/abve-data/bi-geografia-da-eletromobilidade/','BEV + PHEV, veículos leves, jan/2022–ago/2026; consulta dos pilotos.']},notes:'A busca é uma amostra territorial; nenhum cadastro confirma fluxo, potência disponível ou funcionamento dos carregadores.'});
  cache.set(ck,{value,expiry:Date.now()+24*60*60*1000});
  return value;
 }
