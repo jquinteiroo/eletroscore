@@ -53,6 +53,10 @@ test('address context counts mapped chargers without claiming operation or count
  assert.equal(a.nearby.within1,1);assert.equal(a.nearby.within3,2);
  assert.equal(a.nearby.nearest[0].mode,'DC');
  assert.match(a.evidence.find(e=>e.label==='Recarga e concorrência').detail,/operação não verificados/);
+ const movement=a.evidence.find(e=>e.label==='Movimento e horários de pico');
+ assert.equal(movement.state,'pendente');
+ assert.match(movement.url,/^https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=/);
+ assert.match(movement.detail,/relativo ao pico da própria semana/);
  const pilot=enrichReport({kind:'curated',demand:null,demandStatus:'pendente',candidates:[p],chargers:[]}).candidates[0].analysis;
  assert.equal(pilot.nearby.available,false);
  assert.match(pilot.evidence.find(e=>e.label==='Recarga e concorrência').detail,/não integrado/);
