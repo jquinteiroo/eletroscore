@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {cleanCity,normalizePlace,normalizeCharger,score,overpassQuery,curate,publicResult,municipalDemand} from '../src/core.mjs';
+import {cleanCity,normalizePlace,normalizeCharger,score,overpassQuery,curate,publicResult,municipalDemand,enrichReport} from '../src/core.mjs';
 import {readFile} from 'node:fs/promises';
 
 test('city input cannot inject Overpass expressions',()=>{
@@ -41,4 +41,26 @@ test('the two researched pilots retain their provenance and 20 places each',asyn
  assert.match(publicResult('Vinhedo, SP',v).demandStatus,/secundária/);
  assert.equal(p.candidates.length,20);assert.equal(v.candidates.length,20);
  assert.equal(new Set(v.candidates.map(x=>x.name)).size,20);
+});
+test('address context counts mapped chargers without claiming operation or counting missing inventory as zero',()=>{
+ const p=normalizePlace({type:'node',id:10,lat:-23,lon:-47,tags:{name:'Shopping Central',shop:'mall',parking:'customers'}});
+ const close=normalizeCharger({type:'node',id:20,lat:-23.004,lon:-47,tags:{name:'Recarga A',amenity:'charging_station','socket:type2_combo':'2',access:'customers'}});
+ const distant=normalizeCharger({type:'node',id:21,lat:-23.02,lon:-47,tags:{amenity:'charging_station','socket:type2':'2'}});
+ const result=enrichReport({kind:'openstreetmap',demand:11284,demandStatus:'ABVE, consulta datada',candidates:[p],chargers:[close,distant]});
+ const a=result.candidates[0].analysis;
+ assert.equal(a.scores.AC.low,61); // 25 municipal + 16 por categoria + 10 por vaga + 10 por permanência.
+ assert.equal(a.scores.DC.fit,16);
+ assert.equal(a.nearby.within1,1);assert.equal(a.nearby.within3,2);
+ assert.equal(a.nearby.nearest[0].mode,'DC');
+ assert.match(a.evidence.find(e=>e.label==='Recarga e concorrência').detail,/operação não verificados/);
+ const pilot=enrichReport({kind:'curated',demand:null,demandStatus:'pendente',candidates:[p],chargers:[]}).candidates[0].analysis;
+ assert.equal(pilot.nearby.available,false);
+ assert.match(pilot.evidence.find(e=>e.label==='Recarga e concorrência').detail,/não integrado/);
+});
+test('broader search includes named shopping malls and fuel stops while preserving station separation',()=>{
+ const elements=[{type:'node',id:1,lat:-23,lon:-47,tags:{name:'Shopping A',shop:'mall'}},{type:'node',id:2,lat:-23.01,lon:-47,tags:{name:'Posto B',amenity:'fuel'}},{type:'node',id:3,lat:-23.02,lon:-47,tags:{name:'Carga C',amenity:'charging_station'}}];
+ const found=curate(elements);
+ assert.deepEqual(new Set(found.candidates.map(p=>p.cat)),new Set(['Shopping','Posto / parada']));
+ assert.equal(found.chargers.length,1);
+ assert.match(overpassQuery({osm_type:'relation',osm_id:123}),/mall/);
 });
