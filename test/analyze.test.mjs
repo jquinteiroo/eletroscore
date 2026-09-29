@@ -18,6 +18,8 @@ test('an unresearched city keeps ABVE pending while mapping OSM records',async()
   const x=await analyze('Cidade Teste, SP');
   assert.equal(x.kind,'openstreetmap');assert.equal(x.candidates.length,1);
   assert.equal(x.chargers.length,1);assert.equal(x.demand,null);
+  assert.equal(x.candidates[0].analysis.nearby.within3,1);
+  assert.equal(x.candidates[0].analysis.scores.AC.demandKnown,false);
   assert.match(x.demandStatus,/não integrado/);assert.match(x.coverage,/6 km/);assert.equal(calls.length,2);
   const cached=await analyze('Cidade Teste, SP');assert.equal(cached,x);assert.equal(calls.length,2);
  }finally{globalThis.fetch=previous;}
