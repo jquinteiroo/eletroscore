@@ -18,10 +18,10 @@ async function loadCity(city){
 }
 function render(){
  $('result-title').textContent=report.city;
- $('result-meta').textContent=`${report.kind==='curated'?'Piloto pesquisado':'Levantamento automático OSM'} · consulta ${report.date} · ${report.found} locais cadastrados${report.found>report.candidates.length?` (primeiros ${report.candidates.length} exibidos)`:''}`;
+ $('result-meta').textContent=`${report.kind==='curated'?'Piloto pesquisado':'Levantamento automático OSM'} · consulta ${report.date} · ${report.found} locais cadastrados${report.found>report.candidates.length?` (primeiros ${report.candidates.length} exibidos)`:''}${report.coverage?` · ${report.coverage}`:''}`;
  const nReported=report.candidates.filter(p=>p.charge&&p.charge!=='Não apurada').length;
  $('stats').innerHTML=`<div class="stat"><strong>${report.candidates.length}</strong><span>Locais em análise</span><small>Seleção inicial para visita</small></div><div class="stat"><strong>${report.chargers?.length||nReported}</strong><span>Recargas cadastradas</span><small>${report.kind==='curated'?'Relatadas em diretório':'OpenStreetMap; operação incerta'}</small></div><div class="stat"><strong>${Number.isFinite(report.demand)?fmt(report.demand):'—'}</strong><span>Plug-ins municipais</span><small>${esc(report.demandStatus)}</small></div><div class="stat"><strong>${report.candidates.filter(p=>p.coordinates).length}</strong><span>Posições no mapa</span><small>Entradas e vagas a confirmar</small></div>`;
- $('caveat').innerHTML=report.kind==='curated'&&Number.isFinite(report.demand)?`<strong>${report.demandStatus.includes('secundária')?'Indicador secundário':'Indicador ABVE'}.</strong> ${esc(report.notes)} A pontuação municipal é igual para todos os locais e não mede fluxo no endereço.`:`<strong>Demanda ABVE pendente.</strong> A faixa da nota deixa 25 pontos em aberto. ${esc(report.notes)}`;
+ $('caveat').innerHTML=report.kind==='curated'&&Number.isFinite(report.demand)?`<strong>${report.demandStatus.includes('secundária')?'Indicador secundário':'Indicador ABVE'}.</strong> ${esc(report.notes)} A pontuação municipal é igual para todos os locais e não mede fluxo no endereço.`:`<strong>Demanda ABVE pendente.</strong> A faixa da nota deixa 25 pontos em aberto. ${report.coverage?`Recorte: ${esc(report.coverage)}. `:''}${esc(report.notes)}`;
  $('ac').classList.toggle('active',scenario==='AC');$('dc').classList.toggle('active',scenario==='DC');
  renderPlaces();renderDetail();renderRegion();renderChargers();renderMap();
 }
