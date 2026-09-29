@@ -1,6 +1,6 @@
 # EletroScore
 
-App experimental para iniciar a prospecção de pontos de recarga a partir do nome de uma cidade brasileira. A entrada é apenas **Cidade** (pode acrescentar UF para desambiguar). A saída traz locais para investigar, pontos de recarga cadastrados, mapa de posições e uma faixa de EletroScore nos cenários AC e DC.
+App experimental para iniciar a prospecção de pontos de recarga a partir do nome de uma cidade brasileira. A entrada é apenas **Cidade** (pode acrescentar UF para desambiguar). A saída traz locais para investigar, pontos de recarga cadastrados, mapa interativo e uma faixa de EletroScore nos cenários AC e DC.
 
 ## Rodar
 
@@ -28,6 +28,14 @@ git clone https://github.com/jquinteiroo/eletroscore.git eletroscore-app
 cd .\eletroscore-app
 npm.cmd start
 ```
+
+Para atualizar um clone existente, interrompa o servidor com `Ctrl+C`, execute `git pull` na pasta do projeto e rode `npm.cmd start` novamente. No navegador, use `Ctrl+F5` para atualizar os arquivos em cache.
+
+### Mapa
+
+O mapa usa [Leaflet 1.9.4](https://leafletjs.com/download.html) para exibir ruas do [OpenStreetMap](https://www.openstreetmap.org/copyright). É possível arrastar, aproximar, abrir os marcadores e selecionar um candidato no mapa ou na lista. Verde indica candidato; azul indica recarga cadastrada, sem confirmação de operação. A quantidade de candidatos sem coordenadas aparece abaixo do mapa; eles permanecem na lista. A base de ruas precisa de internet no navegador. Se a biblioteca ou os mosaicos não carregarem, o app exibe o mapa esquemático de posições.
+
+O piloto de Vinhedo tem somente três posições com coordenadas verificadas entre vinte locais; desenhar ruas não cria posições para os outros dezessete. A validação de endereço e entrada é o próximo passo para ampliar a cobertura.
 
 Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funcionam sem conexão com serviços externos. Para outras cidades, o servidor consulta Nominatim para resolver o município e Overpass para os cadastros OpenStreetMap. Municípios pequenos podem ser buscados pelo limite cadastrado; cidades extensas usam inicialmente uma área central de cerca de 6 km. Se a primeira consulta falhar por sobrecarga, o app tenta uma segunda instância Overpass com raio de 3 km e identifica o recorte na tela. A busca pode incluir estabelecimentos de municípios vizinhos e não é cobertura integral. O app mantém respostas bem-sucedidas por 24 horas em memória.
 
