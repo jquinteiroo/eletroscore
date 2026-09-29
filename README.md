@@ -35,7 +35,8 @@ Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funciona
 
 - **Poços de Caldas:** indicador municipal BEV + PHEV do painel ABVE consultado no piloto em setembro de 2026.
 - **Vinhedo:** 849 BEV + PHEV constam em base secundária Carregados, sem período inicial claro; a informação não foi reconciliada com a tabela municipal ABVE. A nota de demanda é provisória.
-- **Outras cidades:** demanda municipal ABVE fica pendente (0–25 pontos na faixa) até integração com fonte verificável. O app não atribui automaticamente a elas o dado estadual ou o número de municípios vizinhos.
+- **Demais cidades:** demanda municipal ABVE fica pendente (0–25 pontos na faixa) até integração com fonte verificável. O app não atribui automaticamente a elas o dado estadual ou o número de municípios vizinhos.
+- **Campinas, Valinhos, Jundiaí, Pouso Alegre e Varginha:** os totais BEV + PHEV municipais consultados no painel ABVE durante os pilotos (jan/2022–ago/2026) foram aproveitados como fotografia datada; outras cidades continuam pendentes. Em Campinas, a demanda igual para toda a cidade contribui com 25 pontos para cada endereço, sem diferenciar bairros.
 - Os registros de carregadores do OSM não garantem funcionamento, potência, preço ou acesso. O componente de concorrência (25 pontos) fica pendente para todos. Local ausente do cadastro não significa que ele não existe.
 - A classificação de adequação e permanência é uma hipótese por tipo de local; não mede movimento, receita ou retorno. Estacionamento só ganha 10 pontos se estiver documentado na ficha do piloto ou na tag OSM pertinente. Acesso efetivo à vaga de recarga permanece pendente.
 
@@ -49,7 +50,7 @@ Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funciona
 | Estacionamento e acesso | 20 | 10 por vaga documentada; acesso à recarga pendente |
 | Atração / permanência | 10 | Hipótese por categoria ou pesquisa do piloto |
 
-Faixas são **somas de pontos verificados e pendentes**, não intervalos de confiança. A ordenação favorece locais com mais informação pública. O número de candidatos automáticos é limitado a 25.
+Faixas são **somas de pontos verificados e pendentes**, não intervalos de confiança. O número de candidatos automáticos é limitado a 25; a seleção alterna categorias para não listar somente hotéis numa cidade grande. Uma mesma categoria pode repetir a mesma nota quando o cadastro não comprova vagas ou diferenças entre endereços. A lista automática é uma amostra diversa, não ranking comercial.
 
 ## Fontes e limites técnicos
 
