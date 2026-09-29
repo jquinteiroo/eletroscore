@@ -76,17 +76,18 @@ export function analyzePlace(p,report){
  const context={...nearbyChargers(p,report.chargers),available:report.kind!=='curated'};
  const pilot=report.kind==='curated';
  const ownCharge=Boolean(p.charge&&p.charge!=='Não apurada');
+ const mapsUrl=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([p.name,p.address==='Endereço a confirmar'?'':p.address,report.city].filter(Boolean).join(', '))}`;
  const evidence=[
   {label:'Demanda municipal',state:demand===null?'pendente':report.demandStatus?.includes('secundária')?'estimativa secundária':'dado municipal datado',detail:demand===null?'Sem dado municipal BEV + PHEV integrado.':report.demandStatus},
   {label:'Endereço e posição',state:p.coordinates?'posição cadastrada':'posição pendente',detail:p.coordinates?'Posição aproximada; confirmar entrada e vagas no local.':'Confirmar endereço e geocodificar entrada.'},
   {label:'Estacionamento',state:p.parking===true?'documentado':'pendente',detail:p.parking===true?`${pilot?'Fonte da ficha':'Tag do OpenStreetMap'} indica estacionamento; confirmar acesso e vagas.`:'Não há evidência suficiente de vagas próprias.'},
-  {label:'Fluxo de veículos e pessoas',state:'pendente',detail:'Não foi medido para este endereço.'},
+  {label:'Movimento e horários de pico',state:'pendente',detail:'Sem contagem de visitantes. Consulte no Google Maps se há horários de pico para este local; o gráfico é relativo ao pico da própria semana e pode não estar disponível.',url:mapsUrl},
   {label:'Recarga e concorrência',state:ownCharge?'relato na ficha':context.available&&context.mapped?'cadastros próximos':'pendente',detail:ownCharge?`${p.charge}; confirmar acesso e funcionamento.`:!context.available?'Inventário georreferenciado de recargas não integrado neste piloto.':context.mapped?`${context.within3} cadastro(s) em até 3 km nesta fonte e neste recorte; acesso e operação não verificados.`:'Posição do local indisponível para cálculo de distância.'},
   {label:'Viabilidade elétrica',state:'pendente',detail:'Potência, ligação, obras e custo dependem de vistoria.'}
  ];
  const checks=[!p.coordinates?'Confirmar endereço e localizar a entrada de veículos.':'Confirmar entrada e posição das vagas.',
   p.parking===true?'Confirmar quantidade, acesso e gestão das vagas.':'Verificar se há vagas próprias ou conveniadas.',
-  'Medir permanência e circulação em dias e horários representativos.',
+  'Conferir horários de pico no Google Maps, se disponíveis, e medir circulação em dias e horários representativos.',
   'Verificar recargas próximas, funcionamento, preços e acesso.',
   'Consultar responsável e avaliar capacidade elétrica e custo de instalação.'];
  return {scores:options,nearby:context,evidence,checks};
