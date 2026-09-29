@@ -37,7 +37,7 @@ function renderMap(){
  const missing=report.candidates.filter(p=>!p.coordinates).length;
  $('map-count').textContent=`${report.candidates.length-missing} de ${report.candidates.length} locais com posição; ${missing} sem posição verificada. `;
  if(window.L&&!mapUnavailable){renderStreetMap();return;}
- $('street-map').hidden=true;$('map').hidden=false;
+ $('street-map').hidden=true;$('map').style.display='block';
  $('map-mode').textContent='Mapa esquemático: a base de ruas não carregou. Posições cadastrais aproximadas.';
  renderSvgMap();
 }
@@ -47,7 +47,7 @@ function placePopup(p){return `<strong>${esc(p.name)}</strong><br>${esc(p.cat)} 
 function updateMarkerStyles(){for(const [id,marker] of markerById)marker.setStyle(markerStyle(id===String(selected)));}
 function focusSelectedMarker(){const marker=markerById.get(String(selected));if(streetMap&&marker){streetMap.panTo(marker.getLatLng());marker.openPopup();}}
 function renderStreetMap(){
- $('street-map').hidden=false;$('map').hidden=true;
+ $('street-map').hidden=false;$('map').style.display='none';
  $('map-mode').textContent='Arraste para mover; use + e − para aproximar. Posições cadastrais aproximadas.';
  if(!streetMap){
   streetMap=L.map('street-map',{scrollWheelZoom:false}).setView([-15,-51],5);
