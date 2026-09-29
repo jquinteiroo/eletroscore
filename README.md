@@ -12,6 +12,23 @@ npm start
 
 Abra `http://localhost:3000`. Execute `npm test` para os testes. Defina `PORT` para trocar a porta.
 
+### Windows PowerShell
+
+O PowerShell pode bloquear o atalho `npm.ps1`. Use `npm.cmd start` sem alterar a política de execução. O comando precisa ser executado na pasta que contém `package.json`. Se você extraiu o ZIP do GitHub, confira se há uma pasta `eletroscore-main` dentro da pasta atual:
+
+```powershell
+Get-ChildItem -Recurse -Filter package.json -File | Select-Object -ExpandProperty FullName
+```
+
+Entre na pasta mostrada pelo comando e execute `npm.cmd start`. Se nenhum arquivo aparecer, faça um clone novo do repositório:
+
+```powershell
+cd $HOME\Downloads
+git clone https://github.com/jquinteiroo/eletroscore.git eletroscore-app
+cd .\eletroscore-app
+npm.cmd start
+```
+
 Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funcionam sem conexão com serviços externos. Para outras cidades, o servidor consulta Nominatim para resolver o município e Overpass para os cadastros OpenStreetMap. A consulta pode demorar ou falhar se os serviços públicos estiverem ocupados; tente mais tarde. O app mantém as respostas por 24 horas em memória.
 
 ## Leitura responsável
