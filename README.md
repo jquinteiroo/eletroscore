@@ -29,7 +29,7 @@ cd .\eletroscore-app
 npm.cmd start
 ```
 
-Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funcionam sem conexão com serviços externos. Para outras cidades, o servidor consulta Nominatim para resolver o município e Overpass para os cadastros OpenStreetMap. A consulta pode demorar ou falhar se os serviços públicos estiverem ocupados; tente mais tarde. O app mantém as respostas por 24 horas em memória.
+Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funcionam sem conexão com serviços externos. Para outras cidades, o servidor consulta Nominatim para resolver o município e Overpass para os cadastros OpenStreetMap. Municípios pequenos podem ser buscados pelo limite cadastrado; cidades extensas usam inicialmente uma área central de cerca de 6 km. Se a primeira consulta falhar por sobrecarga, o app tenta uma segunda instância Overpass com raio de 3 km e identifica o recorte na tela. A busca pode incluir estabelecimentos de municípios vizinhos e não é cobertura integral. O app mantém respostas bem-sucedidas por 24 horas em memória.
 
 ## Leitura responsável
 
