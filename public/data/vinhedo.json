@@ -1,0 +1,513 @@
+{
+  "candidates": [
+    {
+      "id": 1,
+      "name": "Intercity Vinhedo",
+      "cat": "Hotel / resort",
+      "address": "Av. das Indústrias, 855 • Distrito Industrial Benedito Storani",
+      "zone": "Industrial",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Hospedagem corporativa com restaurante, eventos e vagas; hipótese de recarga AC de destino.",
+      "check": "Confirmar vagas próprias, perfil de hóspedes, carga elétrica e eventual recarga existente.",
+      "sources": [
+        "intercity",
+        "pref_hotel"
+      ],
+      "coordinates": [
+        -47.0011551,
+        -23.0692666
+      ],
+      "osm": null,
+      "phone": "",
+      "visit": 1
+    },
+    {
+      "id": 2,
+      "name": "Vinhedo Plaza Hotel",
+      "cat": "Hotel / resort",
+      "address": "Av. Independência, 4111 • Vinhedo",
+      "zone": "Independência",
+      "parking": true,
+      "amen": 10,
+      "charge": "Recarga relatada; endereço divergente",
+      "why": "Hotel de maior porte com lazer e restaurante; diretório aponta carregador em endereço diferente.",
+      "check": "Resolver divergência entre endereço do hotel e ficha do ponto, verificar operador e expansão.",
+      "sources": [
+        "plaza",
+        "pref_hotel",
+        "carregados"
+      ],
+      "coordinates": [
+        -46.9751533,
+        -23.0396486
+      ],
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 3,
+      "name": "Recanto Campestre",
+      "cat": "Hotel / resort",
+      "address": "Rua Camélia, s/n • Santa Cândida",
+      "zone": "Santa Cândida",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Hospedagem e eventos; estacionamento ainda não documentado nas fontes consultadas.",
+      "check": "Confirmar entrada, vagas, horários de eventos e operação atual.",
+      "sources": [
+        "pref_hotel"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 4,
+      "name": "Espaço Siloé",
+      "cat": "Hotel / resort",
+      "address": "Rua do Observatório, 538 • Bosque",
+      "zone": "Bosque",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Centro de hospedagem e grupos com estacionamento declarado no cadastro municipal.",
+      "check": "Medir permanência e sazonalidade dos grupos; verificar titular das vagas.",
+      "sources": [
+        "pref_hotel"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 5,
+      "name": "Pousada Willa Hala",
+      "cat": "Hotel / resort",
+      "address": "Rua Luiz de Campos Serra, 1285 • Chácara São Bento",
+      "zone": "Chácara São Bento",
+      "parking": true,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Pousada pequena com estacionamento informado; teste de AC para hóspedes.",
+      "check": "Verificar número real de vagas e veículos plug-in de hóspedes.",
+      "sources": [
+        "pref_hotel"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 6,
+      "name": "Pousada Descanso do Rei",
+      "cat": "Hotel / resort",
+      "address": "Rua Ursa Maior, 195 • Mirante das Estrelas",
+      "zone": "Mirante",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Pernoite e estacionamento interno, com lazer associado.",
+      "check": "Confirmar capacidade e proximidade da entrada de energia.",
+      "sources": [
+        "pref_hotel"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 7,
+      "name": "Pousada Villágio D’Italia",
+      "cat": "Hotel / resort",
+      "address": "Rua Vasco da Gama, 110 • Chácara Trevo",
+      "zone": "Chácara Trevo",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Hospedagem com chalés, piscina e vagas; hipótese AC.",
+      "check": "Confirmar distribuição das vagas e acesso de visitantes.",
+      "sources": [
+        "pref_hotel"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 8,
+      "name": "Tenda Atacado • Vinhedo",
+      "cat": "Supermercado",
+      "address": "Av. Independência, 7040 • Vinhedo",
+      "zone": "Independência",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Estacionamento coberto e alimentação documentados na inauguração; testar recarga durante compras.",
+      "check": "Confirmar operação, vagas acessíveis, permanência média e autorização da rede.",
+      "sources": [
+        "tenda"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 2
+    },
+    {
+      "id": 9,
+      "name": "Covabra • Vinhedo",
+      "cat": "Supermercado",
+      "address": "Av. Benedito Storani, 347 • Vinhedo",
+      "zone": "Benedito Storani",
+      "parking": true,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Mercado com estacionamento descrito em notícia histórica; precisa de atualização.",
+      "check": "Reconfirmar unidade e estacionamento após mudanças operacionais.",
+      "sources": [
+        "covabra"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 10,
+      "name": "Zarelli • Capela",
+      "cat": "Supermercado",
+      "address": "Rua Nicolau Von Zuben, 400 • Capela",
+      "zone": "Capela",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Unidade documentada diretamente pela rede; testar demanda do bairro.",
+      "check": "Confirmar estacionamento, entrada e tempo de compras.",
+      "sources": [
+        "zarelli"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 11,
+      "name": "Zarelli • Aquário",
+      "cat": "Supermercado",
+      "address": "Av. Independência, 5700 • Aquário",
+      "zone": "Aquário",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Unidade no eixo Independência para comparar fluxo com atacarejo e hotéis.",
+      "check": "Confirmar vagas, restrições e gestor da unidade.",
+      "sources": [
+        "zarelli"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 12,
+      "name": "Super Bahia • Vinhedo",
+      "cat": "Supermercado",
+      "address": "Jardim São Tomé • endereço a confirmar com a rede",
+      "zone": "São Tomé",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Outra rede local, útil para comparar compras de bairro; endereço exato pendente.",
+      "check": "Confirmar endereço, unidade ativa, vagas e perfil de compras.",
+      "sources": [
+        "bahia"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 13,
+      "name": "Adega Família Ferragut",
+      "cat": "Adega / turismo",
+      "address": "Av. Rosa Zanetti Ferragut, 499 • Chácara Santo Antônio",
+      "zone": "Chácara Santo Antônio",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Visitas, degustação e produtos locais; fonte regional relata estacionamento.",
+      "check": "Contar permanência de grupos e fins de semana; confirmar vagas e gestão.",
+      "sources": [
+        "ferragut",
+        "ferragut_park"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 3
+    },
+    {
+      "id": 14,
+      "name": "Vinícola Ifanger",
+      "cat": "Adega / turismo",
+      "address": "Estrada da Fazenda Monte Alegre, 4954 • Vinhedo",
+      "zone": "Monte Alegre",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Atrativo rural com visitação; pode combinar recarga AC e roteiro regional.",
+      "check": "Verificar estrada de acesso, estacionamento e frequência de visitas.",
+      "sources": [
+        "ifanger"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 15,
+      "name": "Vinícola Campovilla",
+      "cat": "Adega / turismo",
+      "address": "Rua Magdalena Ferragut, 125 • Jardim Primavera",
+      "zone": "Jardim Primavera",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Visitas sob agendamento podem oferecer permanência previsível.",
+      "check": "Confirmar dias de abertura, vagas e volume de visitas agendadas.",
+      "sources": [
+        "campovilla"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 16,
+      "name": "Adega Família Baccetti",
+      "cat": "Adega / turismo",
+      "address": "Rua Bahia, 86 • Jardim Brasil",
+      "zone": "Jardim Brasil",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Degustação e venda documentadas pela Prefeitura.",
+      "check": "Verificar capacidade do lote, vagas e permanência média.",
+      "sources": [
+        "baccetti"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 17,
+      "name": "Adega Família Azzolin",
+      "cat": "Adega / turismo",
+      "address": "Rua Santa Cruz, 1362 • Pinheirinho",
+      "zone": "Pinheirinho",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Cantina e adega permitem testar parada de refeição.",
+      "check": "Conferir funcionamento, vagas e perfil das refeições.",
+      "sources": [
+        "azzolin"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 18,
+      "name": "Don Cordero",
+      "cat": "Restaurante",
+      "address": "Rod. Edenor João Tasca, 1507 • Mirante das Estrelas",
+      "zone": "Mirante",
+      "parking": true,
+      "amen": 10,
+      "charge": "DC relatada",
+      "why": "Eventos, refeições e estacionamento próprio; diretório relata recarga, indicando hipótese de parceria ou ampliação.",
+      "check": "Confirmar operador, potência, utilização, número de conectores e acesso fora de eventos.",
+      "sources": [
+        "don",
+        "carregados"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 5
+    },
+    {
+      "id": 19,
+      "name": "Pururuca’s Vinhedo",
+      "cat": "Restaurante",
+      "address": "Estrada da Boiada, 850 • Jardim América",
+      "zone": "Jardim América",
+      "parking": null,
+      "amen": 10,
+      "charge": "Recarga restrita em manutenção relatada",
+      "why": "Parada gastronômica com ponto de recarga relatado como indisponível; oportunidade de manutenção a validar.",
+      "check": "Confirmar operação do restaurante, gestor das vagas, estado do carregador e contrato.",
+      "sources": [
+        "carregados"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 20,
+      "name": "Hopi Hari",
+      "cat": "Parque / lazer",
+      "address": "Rod. dos Bandeirantes, km 72 • Moinho",
+      "zone": "Moinho",
+      "parking": null,
+      "amen": 10,
+      "charge": "Tipo 2 relatado; estado variável",
+      "why": "Atração de longa permanência na área de Vinhedo; há carga relatada e check-ins divergentes.",
+      "check": "Confirmar entrada municipal, operador, fila e disponibilidade do ponto antes de propor expansão.",
+      "sources": [
+        "hopi"
+      ],
+      "coordinates": [
+        -47.0098964,
+        -23.0975324
+      ],
+      "osm": null,
+      "phone": "",
+      "visit": 4
+    }
+  ],
+  "sources": {
+    "abve": [
+      "ABVE • Geografia da Eletromobilidade",
+      "https://abve.org.br/abve-data/bi-geografia-da-eletromobilidade/",
+      "Primária • consulta ao painel em 28/09/2026; BEV + PHEV, veículos leves, até agosto de 2026. Valores regionais consultados no painel interativo."
+    ],
+    "carregados": [
+      "Carregados • Vinhedo",
+      "https://carregados.com.br/estacoes?cidade=vinhedo&estado=s%C3%A3o+paulo+%28sp%29",
+      "Secundária • base interna de 849 emplacamentos BEV/PHEV e 10 registros de recarga; período inicial, método, cobertura e operação não verificados na ABVE."
+    ],
+    "pref_hotel": [
+      "Prefeitura • hospedagem em Vinhedo",
+      "https://www.vinhedo.sp.gov.br/portal/turismo/9/1/44/0/0/0/0",
+      "Primária • estabelecimentos, capacidade, comodidades e endereços declarados em cadastro turístico; operação atual a confirmar."
+    ],
+    "intercity": [
+      "Intercity • unidade Vinhedo",
+      "https://www.intercityhoteis.com.br/hotel-vinhedo/hotel-intercity-vinhedo",
+      "Primária • endereço nº 855, restaurante e eventos; o estacionamento aparece nas comodidades da unidade."
+    ],
+    "plaza": [
+      "Vinhedo Plaza • hotel",
+      "https://www.vinhedoplazahotel.com.br/",
+      "Primária • serviços do hotel; cotejar endereço da hospedagem com o endereço diferente atribuído ao carregador por diretório."
+    ],
+    "tenda": [
+      "Prefeitura • inauguração do Tenda",
+      "https://www.vinhedo.sp.gov.br/portal/noticias/0/3/17905/chamados",
+      "Primária • Av. Independência, 7040, estacionamento coberto gratuito, área comercial e alimentação na inauguração; confirmar operação atual."
+    ],
+    "covabra": [
+      "Prefeitura • Covabra Vinhedo",
+      "https://www.vinhedo.sp.gov.br/portal/noticias/0/3/1352/portal/tmp/chamados",
+      "Primária histórica • unidade da Av. Benedito Storani, 347 e estacionamento; confirmar condições atuais."
+    ],
+    "zarelli": [
+      "Zarelli • lojas",
+      "https://www.supermercadoszarelli.com.br/",
+      "Primária • endereços das lojas Capela e Aquário em Vinhedo; vagas não documentadas na página."
+    ],
+    "bahia": [
+      "Super Bahia • site oficial",
+      "https://superbahiavinhedo.com.br/",
+      "Primária • presença da rede em Vinhedo; operação, vagas e endereço a conferir."
+    ],
+    "ferragut": [
+      "Prefeitura • Adega Ferragut",
+      "https://www.vinhedo.sp.gov.br/portal/turismo/0/9/16057/2viaiptu",
+      "Primária • endereço, visitas, gastronomia e eventos."
+    ],
+    "ferragut_park": [
+      "Circuito das Frutas • Adega Ferragut",
+      "https://circuitodasfrutasoficial.sp.gov.br/local/adega-familia-ferragut/",
+      "Portal público regional • estacionamento indicado; acesso e vagas a confirmar."
+    ],
+    "ifanger": [
+      "Prefeitura • Vinícola Ifanger",
+      "https://www.vinhedo.sp.gov.br/portal/turismo/0/9/16078/vinicola-ifanger",
+      "Primária • atividade turística e endereço."
+    ],
+    "campovilla": [
+      "Prefeitura • Campovilla",
+      "https://www.vinhedo.sp.gov.br/portal/turismo/0/9/16056/adega-familia-campovilla",
+      "Primária • visitas mediante agendamento, endereço e produtos."
+    ],
+    "baccetti": [
+      "Prefeitura • Adega Baccetti",
+      "https://www.vinhedo.sp.gov.br/portal/turismo/0/9/16055/adega-familia-baccetti",
+      "Primária • endereço, degustação e venda."
+    ],
+    "azzolin": [
+      "Prefeitura • Adega Azzolin",
+      "https://www.vinhedo.sp.gov.br/portal/turismo/0/9/16054/adega-familia-azzolin-cantina-e-restaurante",
+      "Primária • restaurante, adega e endereço."
+    ],
+    "don": [
+      "Don Cordero • site oficial",
+      "https://www.doncorderolp.com.br/",
+      "Primária • estacionamento próprio, gastronomia, eventos e endereço."
+    ],
+    "hopi": [
+      "Carregados • recarga no Hopi Hari",
+      "https://carregados.com.br/estacoes/estacao-hopi-hari-164780?cidade=vinhedo&estado=s%C3%A3o+paulo+%28sp%29",
+      "Secundária • ficha com check-ins positivos e falha recente; horário, acesso e disponibilidade em tempo real não garantidos."
+    ],
+    "parque": [
+      "Prefeitura • Parque Jayme Ferragut",
+      "https://www.vinhedo.sp.gov.br/portal/turismo/0/9/16069/2viaiptu",
+      "Primária • atrações, eventos, endereço e horários; estacionamento não confirmado."
+    ],
+    "osm": [
+      "OpenStreetMap • posições",
+      "https://www.openstreetmap.org/copyright",
+      "© colaboradores OpenStreetMap, ODbL. Poucas posições obtidas em cadastro geográfico, sem validar entrada ou acesso a estacionamento."
+    ]
+  },
+  "abve": {
+    "period": "jan/2022–ago/2026",
+    "vinhedo": {
+      "plugin": 849,
+      "annual": [
+        148,
+        199,
+        309
+      ],
+      "source": "Carregados: base interna; período inicial não divulgado"
+    },
+    "sp": 178720,
+    "brasil": 639133,
+    "campinas": 11284,
+    "valinhos": 1885,
+    "jundiai": 3683
+  },
+  "date": "28/09/2026"
+}

@@ -1,0 +1,614 @@
+{
+  "candidates": [
+    {
+      "id": 1,
+      "name": "Partage Poços de Caldas",
+      "cat": "Shopping",
+      "address": "Av. Silvio Monteiro dos Santos, 180 • Vale das Antas",
+      "zone": "Oeste",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Combina estacionamento e destinos de compras, alimentação e lazer. Bom teste de recarga durante a permanência.",
+      "check": "Mapear recarga instalada, tempo de permanência e vagas próximas ao quadro. Verificar gestão do estacionamento e acesso fora do horário comercial.",
+      "sources": [
+        "partage",
+        "partage2"
+      ],
+      "coordinates": [
+        -46.602025689,
+        -21.777222721
+      ],
+      "osm": "way/234143099",
+      "phone": "",
+      "visit": 1
+    },
+    {
+      "id": 2,
+      "name": "Vilage Inn",
+      "cat": "Hotel / resort",
+      "address": "Av. Vereador Edmundo Cardillo, 3500 • Jardim Del Rey",
+      "zone": "Edmundo Cardillo",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Pernoite e estacionamento informado pelo hotel favorecem a hipótese de recarga AC de destino.",
+      "check": "Confirmar se já existe recarga, política para não hóspedes, ocupação por dia e área para vagas reservadas.",
+      "sources": [
+        "vilage"
+      ],
+      "coordinates": [
+        -46.5568138,
+        -21.8115151
+      ],
+      "osm": "node/1428293760",
+      "phone": "",
+      "visit": 2
+    },
+    {
+      "id": 3,
+      "name": "Hotel Minas Gerais",
+      "cat": "Hotel / resort",
+      "address": "Rua Pernambuco, 615 • Centro",
+      "zone": "Centro",
+      "parking": true,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Hotel central com estacionamento e eventos. Permite testar demanda de hóspedes e clientes corporativos.",
+      "check": "Validar localização efetiva das vagas, responsável pela garagem e pedidos de recarga recebidos na recepção.",
+      "sources": [
+        "minas"
+      ],
+      "coordinates": [
+        -46.567610765,
+        -21.783985935
+      ],
+      "osm": "way/838266621",
+      "phone": "",
+      "visit": 3
+    },
+    {
+      "id": 4,
+      "name": "Golden Park",
+      "cat": "Hotel / resort",
+      "address": "Av. Vereador Edmundo Cardillo, 3608 • Parque Vivaldi",
+      "zone": "Edmundo Cardillo",
+      "parking": true,
+      "amen": 10,
+      "charge": "Tomada comum relatada",
+      "why": "Estacionamento e permanência longa; diretório registra tomada comum. Hipótese de modernização da oferta.",
+      "check": "Inspecionar a recarga existente antes de propor equipamento. Medir uso e demanda não atendida; conferir proteção e potência disponível.",
+      "sources": [
+        "golden",
+        "diretorio"
+      ],
+      "coordinates": [
+        -46.555638461,
+        -21.813791139
+      ],
+      "osm": "way/233029279",
+      "phone": "(35) 2101-9900",
+      "visit": 4
+    },
+    {
+      "id": 5,
+      "name": "Pampa Churrascaria",
+      "cat": "Restaurante",
+      "address": "Rua Campestre, 50 • Jardim dos Estados (inventário municipal)",
+      "zone": "Leste",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Refeição oferece uma janela de permanência distinta dos hotéis. Visita explora a hipótese de parada curta.",
+      "check": "Confirmar entrada: outros cadastros usam Av. José Remígio Prezia. Validar estacionamento próprio, giro das mesas e recarga existente.",
+      "sources": [
+        "inventario",
+        "pampa"
+      ],
+      "coordinates": [
+        -46.549545375,
+        -21.7849545
+      ],
+      "osm": "way/234142794",
+      "phone": "(35) 3722-6379",
+      "visit": 5
+    },
+    {
+      "id": 6,
+      "name": "Monreale Resort",
+      "cat": "Hotel / resort",
+      "address": "Av. Leonor F. Delgado, 3033",
+      "zone": "Sudeste",
+      "parking": true,
+      "amen": 10,
+      "charge": "Recarga relatada",
+      "why": "Hospedagem, alimentação e estacionamento. A oportunidade pode ser ampliação ou parceria operacional.",
+      "check": "Confirmar equipamento e operador atuais, ocupação das vagas e necessidade adicional antes de considerar nova instalação.",
+      "sources": [
+        "monreale",
+        "monreale2",
+        "hotelcharge"
+      ],
+      "coordinates": [
+        -46.5210419,
+        -21.8206701
+      ],
+      "osm": null,
+      "phone": "(35) 2101-7777",
+      "visit": 0
+    },
+    {
+      "id": 7,
+      "name": "Thermas Resort Walter World",
+      "cat": "Hotel / resort",
+      "address": "Av. Vereador Edmundo Cardillo, 3131",
+      "zone": "Edmundo Cardillo",
+      "parking": true,
+      "amen": 10,
+      "charge": "Tomada comum relatada",
+      "why": "Resort com lazer e pernoite. Tomada comum aparece em cadastro externo.",
+      "check": "Confirmar tipo de recarga existente, condições de acesso e eventual demanda por equipamento dedicado.",
+      "sources": [
+        "walter",
+        "diretorio"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 8,
+      "name": "Carlton Plaza",
+      "cat": "Hotel / resort",
+      "address": "Rua Junqueiras, 601 • Centro",
+      "zone": "Centro",
+      "parking": true,
+      "amen": 10,
+      "charge": "Tipo 2 relatado",
+      "why": "Estacionamento próprio pago, restaurante e eventos. Tratar como possível expansão/parceria.",
+      "check": "Confirmar ficha de recarga que usa nº 618, acesso por terceiros, operador e utilização do equipamento.",
+      "sources": [
+        "carlton",
+        "diretorio"
+      ],
+      "coordinates": [
+        -46.566797291,
+        -21.789189091
+      ],
+      "osm": "way/824600669",
+      "phone": "(35) 3722-3311",
+      "visit": 0
+    },
+    {
+      "id": 9,
+      "name": "Nacional Inn",
+      "cat": "Hotel / resort",
+      "address": "Rua Barros Cobra, 35 • Centro",
+      "zone": "Centro",
+      "parking": true,
+      "amen": 10,
+      "charge": "Tipo 2 relatado",
+      "why": "Pernoite com estacionamento pago; presença de recarga registrada em diretório.",
+      "check": "Conferir disponibilidade e cobrança atuais, controle das vagas e demanda de hóspedes antes de ampliar.",
+      "sources": [
+        "nacional",
+        "diretorio"
+      ],
+      "coordinates": [
+        -46.565928557,
+        -21.7891848
+      ],
+      "osm": "way/759842645",
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 10,
+      "name": "Cassino Resort",
+      "cat": "Hotel / resort",
+      "address": "Av. do Contorno, km 5 • Jardim do Contorno",
+      "zone": "Contorno",
+      "parking": true,
+      "amen": 10,
+      "charge": "Tipo 2 relatado",
+      "why": "Resort com estacionamento. Investigar ampliação ou gestão da recarga existente.",
+      "check": "Validar posição da entrada, titularidade e uso dos equipamentos, acesso de visitantes e conexão elétrica.",
+      "sources": [
+        "cassino",
+        "diretorio"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "(35) 3716-6000",
+      "visit": 0
+    },
+    {
+      "id": 11,
+      "name": "Hotel Fazenda Poços de Caldas",
+      "cat": "Hotel / resort",
+      "address": "Av. Geraldo Martins Costa, 7290",
+      "zone": "Sudeste",
+      "parking": true,
+      "amen": 10,
+      "charge": "Tomada comum relatada",
+      "why": "Estacionamento e refeições associados a estadas longas; hipótese de recarga de destino.",
+      "check": "Verificar ponto existente, demanda sazonal e infraestrutura entre estacionamento e entrada de energia.",
+      "sources": [
+        "fazenda",
+        "fazenda2",
+        "diretorio"
+      ],
+      "coordinates": [
+        -46.5294527,
+        -21.8332796
+      ],
+      "osm": "node/4599899439",
+      "phone": "(35) 2101-4100",
+      "visit": 0
+    },
+    {
+      "id": 12,
+      "name": "Hotel Villa Fiori",
+      "cat": "Hotel / resort",
+      "address": "Praça Dom Pedro II, 184 • Centro",
+      "zone": "Centro",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Hotel central; pode atender hóspedes, mas as condições de estacionamento ainda não estão comprovadas.",
+      "check": "Confirmar garagem própria ou conveniada, entrada e recarga existente. Há cadastros com numeração diferente.",
+      "sources": [
+        "villa"
+      ],
+      "coordinates": [
+        -46.56476512,
+        -21.79083362
+      ],
+      "osm": "way/1025373783",
+      "phone": "(35) 3114-9090",
+      "visit": 0
+    },
+    {
+      "id": 13,
+      "name": "ibis Styles Poços de Caldas",
+      "cat": "Hotel / resort",
+      "address": "Rua Pernambuco, 280 • Centro",
+      "zone": "Centro",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Hotel com restaurante e bar. A adequação depende de acesso real a vagas sob gestão do empreendimento.",
+      "check": "Confirmar disponibilidade de garagem e possibilidade de instalação. Não confundir com antigo ibis na Rua Junqueiras.",
+      "sources": [
+        "ibis"
+      ],
+      "coordinates": [
+        -46.57133,
+        -21.78367
+      ],
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 14,
+      "name": "Palace Hotel",
+      "cat": "Hotel / resort",
+      "address": "Praça Pedro Sanches, s/n • Centro",
+      "zone": "Centro",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Hospedagem e eventos no centro. Relatos indicam uso de garagens conveniadas, exigindo parceiro de estacionamento.",
+      "check": "Localizar o estacionamento e seu gestor. Confirmar restrições físicas e autorização antes de estudar implantação no hotel.",
+      "sources": [
+        "palace"
+      ],
+      "coordinates": [
+        -46.568724614,
+        -21.786265457
+      ],
+      "osm": "way/129462494",
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 15,
+      "name": "Fonseca • Francisco Salles",
+      "cat": "Supermercado",
+      "address": "Av. Francisco Salles, 425 • Centro",
+      "zone": "Centro",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Compra recorrente pode gerar sessões durante a visita, caso haja vagas e permanência compatível.",
+      "check": "Confirmar estacionamento, permanência média dos clientes, presença de elétricos e responsável pela unidade.",
+      "sources": [
+        "fonseca"
+      ],
+      "coordinates": [
+        -46.566465527,
+        -21.784833255
+      ],
+      "osm": "way/760540986",
+      "phone": "(35) 3729-0063",
+      "visit": 0
+    },
+    {
+      "id": 16,
+      "name": "Supermercados BH • Centro",
+      "cat": "Supermercado",
+      "address": "Rua Assis Figueiredo, 1370 • Centro",
+      "zone": "Centro",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Unidade central identificada no site da rede; hipótese de recarga associada às compras.",
+      "check": "Confirmar estacionamento e acesso. Cadastro cartográfico ainda traz a bandeira Bretas; validar ponto e entrada.",
+      "sources": [
+        "bh"
+      ],
+      "coordinates": [
+        -46.567383633,
+        -21.790708243
+      ],
+      "osm": "way/1390547813",
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 17,
+      "name": "Supermercado Barzali • Togni",
+      "cat": "Supermercado",
+      "address": "Antônio Togni, 2520 • cadastro ACIA",
+      "zone": "Oeste",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Candidato no eixo oeste para comparar demanda de moradores com o shopping.",
+      "check": "Confirmar nº 2520/2526, operação da unidade e existência de vagas. Georreferenciamento pendente.",
+      "sources": [
+        "acia"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 18,
+      "name": "Mart Minas • Poços de Caldas",
+      "cat": "Supermercado",
+      "address": "Av. Alcoa, 1133 • Jardim Paraíso (cadastro)",
+      "zone": "Alcoa",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Hipótese de compras com maior permanência; requer confirmação da operação e das condições do lote.",
+      "check": "Confirmar endereço com a rede, vagas, horário e demanda elétrica. Não foi obtida coordenada suficientemente confiável.",
+      "sources": [
+        "mart",
+        "mart2"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 19,
+      "name": "Supermercado Colombo",
+      "cat": "Supermercado",
+      "address": "Rua Coronel Virgílio Silva, 2977 • cadastro ACIA",
+      "zone": "Leste",
+      "parking": null,
+      "amen": 5,
+      "charge": "Não apurada",
+      "why": "Candidato fora do núcleo central, útil para testar cobertura em outro eixo urbano.",
+      "check": "Confirmar operação, estacionamento, permanência e presença de veículos plug-in. Georreferenciamento pendente.",
+      "sources": [
+        "acia"
+      ],
+      "coordinates": null,
+      "osm": null,
+      "phone": "",
+      "visit": 0
+    },
+    {
+      "id": 20,
+      "name": "Ollivia Gastronomia",
+      "cat": "Restaurante",
+      "address": "Av. João Pinheiro, 1135 • Centro",
+      "zone": "João Pinheiro",
+      "parking": null,
+      "amen": 10,
+      "charge": "Não apurada",
+      "why": "Refeições com reserva podem permitir permanência maior; potencial depende de vagas dedicadas.",
+      "check": "Confirmar estacionamento, janelas efetivas de abertura e acesso. Atendimento em dias específicos limita o uso contínuo.",
+      "sources": [
+        "ollivia",
+        "inventario"
+      ],
+      "coordinates": [
+        -46.58359,
+        -21.7859109
+      ],
+      "osm": "node/4973964988",
+      "phone": "(35) 99146-0012",
+      "visit": 0
+    }
+  ],
+  "sources": {
+    "abve": [
+      "ABVE Data • Geografia da Eletromobilidade",
+      "https://abve.org.br/abve-data/bi-geografia-da-eletromobilidade/",
+      "Primária • painel consultado em 26/09/2026. Veículos leves; BEV e PHEV; todos os fabricantes; anos 2022–2026. Em 2026, o seletor de meses termina em agosto."
+    ],
+    "partage": [
+      "Partage • estacionamento e endereço",
+      "https://www.pocosdecaldasshopping.com.br/estacionamento",
+      "Primária • estacionamento e endereço do empreendimento."
+    ],
+    "partage2": [
+      "Partage • o shopping",
+      "https://www.partagepocosdecaldas.com.br/oshopping",
+      "Primária • lojas, alimentação, cinema e lazer."
+    ],
+    "vilage": [
+      "Vilage Inn • site da rede",
+      "https://sites.nacionalinn.com.br/hotel-pocos-de-caldas/vilage-inn",
+      "Primária • hospedagem, alimentação e estacionamento."
+    ],
+    "golden": [
+      "Golden Park • site da rede",
+      "https://sites.nacionalinn.com.br/hotel-pocos-de-caldas/golden-park",
+      "Primária • hospedagem, restaurante, estacionamento e endereço."
+    ],
+    "nacional": [
+      "Nacional Inn • site da rede",
+      "https://sites.nacionalinn.com.br/hotel-pocos-de-caldas/nacional-inn",
+      "Primária • hotel e estacionamento pago."
+    ],
+    "walter": [
+      "Thermas Walter World • site da rede",
+      "https://sites.nacionalinn.com.br/hotel-pocos-de-caldas/thermas-resort-walter-world",
+      "Primária • hospedagem, estrutura de lazer e estacionamento."
+    ],
+    "cassino": [
+      "Cassino Resort • site da rede",
+      "https://sites.nacionalinn.com.br/hotel-pocos-de-caldas/cassino",
+      "Primária • hotel, estacionamento e endereço."
+    ],
+    "carlton": [
+      "Carlton Plaza • motor de reservas",
+      "https://book.omnibees.com/chain/2356/hotel/5021?errredir=1",
+      "Canal de reservas do hotel • endereço, estacionamento, restaurante e eventos."
+    ],
+    "minas": [
+      "Hotel Minas Gerais • motor de reservas",
+      "https://book.omnibees.com/chain/8499/hotel/15213?errredir=1",
+      "Canal de reservas do hotel • endereço e estacionamento."
+    ],
+    "villa": [
+      "Hotel Villa Fiori • site oficial",
+      "https://www.hotelvillafiori.com.br/",
+      "Primária • endereço oficial adotado: Praça Dom Pedro II, 184. Há divergência com numeração em outros cadastros."
+    ],
+    "ibis": [
+      "ibis Styles • Accor",
+      "https://all.accor.com/hotel/B5R1/index.pt-br.shtml",
+      "Primária • endereço, coordenadas, restaurante e bar. Estacionamento não confirmado nesta coleta."
+    ],
+    "monreale": [
+      "Monreale • localização",
+      "https://monrealeresort.com/localizacao/",
+      "Primária • endereço e posição do destino no link de localização."
+    ],
+    "monreale2": [
+      "Monreale • pacote e estrutura",
+      "https://monrealeresort.com/pacote-hotel-16-a-18-de-outubro-2026/",
+      "Primária • alimentação e estacionamento incluído no pacote."
+    ],
+    "fazenda": [
+      "Hotel Fazenda • estrutura",
+      "https://hotelfazendapocosdecaldas.com.br/estrutura/",
+      "Primária • endereço, refeições, lazer e eventos."
+    ],
+    "fazenda2": [
+      "Hotel Fazenda • motor de reservas",
+      "https://book.omnibees.com/chain/8788/hotel/5485",
+      "Canal de reservas do hotel • estacionamento gratuito."
+    ],
+    "palace": [
+      "Palace • site oficial",
+      "https://palacehotelpocos.com.br/",
+      "Primária • hotel, restaurante e eventos. Avaliação de hóspede reproduzida no site relata estacionamento conveniado; não é confirmação do operador."
+    ],
+    "fonseca": [
+      "Fonseca • lojas",
+      "https://fonsecasupermercados.com.br/portal/lojas",
+      "Primária • unidade da Av. Francisco Salles, 425."
+    ],
+    "bh": [
+      "Supermercados BH • unidade Centro",
+      "https://www.supermercadosbh.com.br/lojas/pocos-de-caldas-mg/",
+      "Primária • Rua Assis Figueiredo, 1370. Nome atual substitui cadastro antigo Bretas."
+    ],
+    "acia": [
+      "ACIA • estabelecimentos participantes de 2025",
+      "https://www.aciapocos.com.br/noticias:lojas-participantes-da-campanha-de-natal-acia-2025",
+      "Entidade comercial local • endereços Barzali e Colombo; operação atual e vagas a confirmar."
+    ],
+    "mart": [
+      "Mart Minas • cadastro da filial",
+      "https://www.econodata.com.br/consulta-empresa/04737552004206-mart-minas-distribuicao-ltda",
+      "Secundária • endereço cadastral; não comprova estacionamento nem horário."
+    ],
+    "mart2": [
+      "Mart Minas • presença na cidade",
+      "https://testesite.martminas.com.br/quem-somos/",
+      "Página institucional em subdomínio de teste • presença em Poços; endereço deve ser reconfirmado com a loja."
+    ],
+    "inventario": [
+      "Prefeitura • Inventário Turístico 2025",
+      "https://pocosdecaldas.mg.gov.br/tour/observatorio/arquivos/estudos_1_2025-11-12_12-38-14.pdf",
+      "Primária • Pampa e Ollivia, páginas 98–99 do PDF (numeração do leitor). Endereços e contatos."
+    ],
+    "pampa": [
+      "Pampa • cadastro e estacionamento relatado",
+      "https://www.tripadvisor.com.br/Restaurant_Review-g303391-d2389131-Reviews-Pampa_Churrascaria-Pocos_de_Caldas_State_of_Minas_Gerais.html",
+      "Secundária • há menção/foto de estacionamento e endereço divergente; confirmar entrada e vagas."
+    ],
+    "ollivia": [
+      "Ollivia • página de reservas Get In",
+      "https://www.getin.app/pocos-de-caldas/ollivia-gastronomia",
+      "Canal de reservas • endereço e janelas de atendimento."
+    ],
+    "diretorio": [
+      "Eletropostos Brasil • levantamento local",
+      "https://www.eletrospostosbrasil.com.br/estados/mg/pocos-de-caldas",
+      "Secundária • indícios de recarga a verificar. FEPASA aparece em duas fichas; tomadas comuns não equivalem a carregadores dedicados. Nenhuma disponibilidade ao vivo foi validada."
+    ],
+    "hotelcharge": [
+      "Hotel com Carregador • Minas Gerais",
+      "https://hotelcomcarregador.com.br/mg/",
+      "Secundária • recarga relatada no Monreale; tipo, potência, acesso e operação a confirmar."
+    ],
+    "fepasa": [
+      "Prefeitura • eletroposto da antiga estação",
+      "https://pocosdecaldas.mg.gov.br/noticias/eletroposto-e-marco-na-cidade/",
+      "Primária • existência do eletroposto FEPASA na publicação de 26/05/2023; operação atual pendente."
+    ],
+    "osm": [
+      "OpenStreetMap • base cartográfica",
+      "https://www.openstreetmap.org/copyright",
+      "© colaboradores do OpenStreetMap, ODbL. Extração em 26/09/2026. Posições cadastrais aproximadas; não são entradas de estacionamento."
+    ],
+    "senatran": [
+      "Senatran • frota de veículos 2026",
+      "https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/frota-de-veiculos-2026",
+      "Fonte para próxima etapa: conciliar frota registrada com emplacamentos ABVE. Dados ainda não incorporados ao piloto."
+    ]
+  },
+  "abve": {
+    "period": "jan/2022–ago/2026",
+    "pocos": {
+      "bev": 320,
+      "phev": 261,
+      "plugin": 581,
+      "annual": [
+        8,
+        18,
+        32,
+        212,
+        311
+      ]
+    },
+    "mg": 44682,
+    "brasil": 639133,
+    "pousoAlegre": 630,
+    "varginha": 353
+  },
+  "date": "26/09/2026"
+}
