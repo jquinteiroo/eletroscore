@@ -9,4 +9,9 @@
 .street-map .leaflet-popup-content strong{font-size:13px}
 .street-map .leaflet-container{font-family:'DM Sans',sans-serif}
 .side-column .sticky{position:static}
+.detail h4{font:750 13px Manrope,sans-serif;margin:24px 0 8px}.detail .small{font-size:11px;color:var(--muted)}
+.nearby-stats{display:flex;align-items:center;gap:7px;margin-bottom:10px}.nearby-stats strong{font:800 16px Manrope,sans-serif;color:var(--green);margin-left:5px}
+.nearby-list{list-style:none;padding:0;margin:7px 0 12px}.nearby-list li{border-top:1px solid var(--line);padding:7px 0}.nearby-list small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.evidence-row{border-top:1px solid var(--line);padding:9px 0}.evidence-row span{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:700}.evidence-row b{color:var(--green);font-weight:700;text-align:right}.evidence-row b.pending{color:var(--amber)}.evidence-row small{display:block;color:var(--muted);font-size:11px;line-height:1.4;margin-top:3px}
+.checklist{padding-left:19px;margin:6px 0}.checklist li{font-size:11px;padding:3px 0}.source-links{line-height:1.7;overflow-wrap:anywhere}
 @media(max-width:600px){.street-map{height:350px}.map-panel .legend{font-size:10px}}
