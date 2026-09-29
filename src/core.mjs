@@ -39,14 +39,26 @@ export function score(p,scenario='AC',demand=null){
  const pending=25+10+(p.parking===true?0:10)+(Number.isFinite(demand)?0:25);
  return {low:+base.toFixed(1),high:+Math.min(100,base+pending).toFixed(1),pending,demandKnown:Number.isFinite(demand)};
 }
-export function overpassQuery(geo){
+export function surveyRadius(geo){
+ const box=geo.boundingbox?.map(Number),lat=Number(geo.lat);
+ if(!Array.isArray(box)||box.length!==4||box.some(n=>!Number.isFinite(n))||!Number.isFinite(lat))return 6;
+ const northSouth=(box[1]-box[0])*111,eastWest=(box[3]-box[2])*111*Math.cos(lat*Math.PI/180);
+ return northSouth<=14&&eastWest<=14?null:6;
+}
+export function overpassQuery(geo,{radiusKm=null}={}){
  const id=Number(geo.osm_id);
  const area=geo.osm_type==='relation'&&Number.isSafeInteger(id)&&id>0?`(area:${3600000000+id})`:null;
  const box=geo.boundingbox?.map(Number);
  if(!area&&(!Array.isArray(box)||box.length!==4||box.some(n=>!Number.isFinite(n))))throw new Error('Limite municipal indisponível.');
- const scope=area||`(${box[0]},${box[2]},${box[1]},${box[3]})`;
+ let scope=area||`(${box[0]},${box[2]},${box[1]},${box[3]})`;
+ if(radiusKm!==null){
+  const lat=Number(geo.lat),lon=Number(geo.lon);
+  if(!Number.isFinite(lat)||!Number.isFinite(lon)||!Number.isFinite(radiusKm)||radiusKm<=0||radiusKm>10)throw new Error('Centro municipal indisponível.');
+  const dy=radiusKm/111,dx=radiusKm/(111*Math.cos(lat*Math.PI/180));
+  scope=`(${(lat-dy).toFixed(5)},${(lon-dx).toFixed(5)},${(lat+dy).toFixed(5)},${(lon+dx).toFixed(5)})`;
+ }
  const filters=['["tourism"~"^(hotel|guest_house|motel|attraction|theme_park)$"]','["shop"="supermarket"]','["amenity"="restaurant"]','["craft"="winery"]','["shop"="wine"]','["amenity"="charging_station"]'];
- return `[out:json][timeout:28];(${filters.map(f=>`nwr${f}${scope};`).join('')});out center;`;
+ return `[out:json][timeout:22];(${filters.map(f=>`nwr${f}${scope};`).join('')});out center;`;
 }
 export function curate(elements){
  const chargers=[],candidates=[],seen=new Set();
