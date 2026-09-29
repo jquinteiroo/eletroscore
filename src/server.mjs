@@ -2,7 +2,7 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
-import {cleanCity,key,curate,overpassQuery,publicResult,surveyRadius} from './core.mjs';
+import {cleanCity,key,curate,overpassQuery,publicResult,surveyRadius,municipalDemand} from './core.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../public');
 const PORT=Number(process.env.PORT)||3000;
@@ -60,8 +60,11 @@ async function analyzeExternal(city,ck){
  if(!geo)throw new Error('Cidade não encontrada no Brasil. Inclua a UF, por exemplo: Campinas, SP.');
  const {osm,radiusKm}=await collectPlaces(geo);
  const places=curate(osm.elements||[]);
+ const municipal=municipalDemand(geo);
  const coverage=radiusKm===null?'município cadastrado no OSM':`área central em raio aproximado de ${radiusKm} km; pode incluir municípios vizinhos`;
- const value={city:geo.display_name.split(',').slice(0,2).join(','),kind:'openstreetmap',date:new Date().toISOString().slice(0,10),area:radiusKm===null?geo.boundingbox?.map(Number):null,coverage,...places,demand:null,demandStatus:'Municipal ABVE ainda não integrado para esta cidade',sources:{osm:['OpenStreetMap / Overpass','https://www.openstreetmap.org/copyright','Cadastros públicos colaborativos; dados podem estar incompletos ou desatualizados.']},notes:'A busca é uma amostra territorial; nenhum cadastro confirma fluxo, potência disponível ou funcionamento dos carregadores.'};
+ const region=geo.address?.['ISO3166-2-lvl4']?.split('-')[1]??({saopaulo:'SP',minasgerais:'MG'})[key(geo.address?.state??'')];
+ const abve=municipal?region==='SP'?{sp:178720,campinas:11284,jundiai:3683,valinhos:1885}:{mg:44682,pousoAlegre:630,varginha:353}:undefined;
+ const value={city:geo.display_name.split(',').slice(0,2).join(','),kind:'openstreetmap',date:new Date().toISOString().slice(0,10),area:radiusKm===null?geo.boundingbox?.map(Number):null,coverage,...places,demand:municipal?.plugin??null,demandStatus:municipal?`${municipal.source}; ${municipal.period}`:'Municipal ABVE ainda não integrado para esta cidade',abve,sources:{osm:['OpenStreetMap / Overpass','https://www.openstreetmap.org/copyright','Cadastros públicos colaborativos; dados podem estar incompletos ou desatualizados.'],abve:['ABVE Data — Geografia da Eletromobilidade','https://abve.org.br/abve-data/bi-geografia-da-eletromobilidade/','BEV + PHEV, veículos leves, jan/2022–ago/2026; consulta dos pilotos.']},notes:'A busca é uma amostra territorial; nenhum cadastro confirma fluxo, potência disponível ou funcionamento dos carregadores.'};
  cache.set(ck,{value,expiry:Date.now()+24*60*60*1000});
  return value;
 }
