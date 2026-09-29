@@ -12,6 +12,18 @@ export function cleanCity(input){
  return s;
 }
 export function key(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');}
+const abveSnapshot={
+ 'SP:campinas':11284,'SP:jundiai':3683,'SP:valinhos':1885,
+ 'MG:pousoalegre':630,'MG:varginha':353
+};
+export function municipalDemand(geo){
+ const city=geo.address?.city??geo.address?.town??geo.address?.municipality??geo.display_name?.split(',')[0]??'';
+ const code=geo.address?.['ISO3166-2-lvl4']?.split('-')[1]??
+  ({saopaulo:'SP',minasgerais:'MG'})[key(geo.address?.state??'')];
+ const plugin=abveSnapshot[`${code}:${key(city)}`];
+ if(!Number.isFinite(plugin))return null;
+ return {plugin,period:'jan/2022–ago/2026',source:'ABVE Data — Geografia da Eletromobilidade; consulta dos pilotos em 28/09/2026'};
+}
 export function number(v){return Number.isFinite(Number(v))?Number(v):null;}
 export function normalizePlace(el){
  const t=el.tags??{},lat=number(el.lat??el.center?.lat),lon=number(el.lon??el.center?.lon);
@@ -65,11 +77,18 @@ export function curate(elements){
  for(const el of elements){
   if(el.tags?.amenity==='charging_station'){const c=normalizeCharger(el);if(c)chargers.push(c);continue;}
   const p=normalizePlace(el);if(!p)continue;
-  const dedupe=key(p.name)+':'+p.coordinates.map(x=>x.toFixed(3)).join(':');
+  const dedupe=p.name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'')+':'+p.coordinates.map(x=>x.toFixed(3)).join(':');
   if(seen.has(dedupe))continue;seen.add(dedupe);candidates.push(p);
  }
- candidates.sort((a,b)=>score(b).low-score(a).low||a.name.localeCompare(b.name,'pt-BR'));
- return {candidates:candidates.slice(0,LIMIT),chargers,found:candidates.length};
+ // Reservar espaço para usos distintos; uma cidade com muitos hotéis não deve
+ // preencher as 25 fichas antes de supermercados, restaurantes e atrações.
+ const categories=Object.values(types).map(t=>t.label),buckets=categories.map(cat=>
+  candidates.filter(p=>p.cat===cat).sort((a,b)=>score(b).low-score(a).low||a.name.localeCompare(b.name,'pt-BR')));
+ const chosen=[];
+ while(chosen.length<LIMIT&&buckets.some(b=>b.length)){
+  for(const bucket of buckets){if(bucket.length&&chosen.length<LIMIT)chosen.push(bucket.shift());}
+ }
+ return {candidates:chosen,chargers,found:candidates.length};
 }
 export function publicResult(city,seed){
  const d=seed.abve?.pocos?.plugin??seed.abve?.vinhedo?.plugin??null;
