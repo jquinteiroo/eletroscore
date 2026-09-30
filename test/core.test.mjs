@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {cleanCity,normalizePlace,normalizeCharger,score,overpassQuery,curate,publicResult,municipalDemand,enrichReport} from '../src/core.mjs';
+import {cleanCity,normalizePlace,normalizeCharger,score,overpassQuery,curate,publicResult,municipalDemand,enrichReport,WEIGHTS} from '../src/core.mjs';
 import {readFile} from 'node:fs/promises';
 
 test('city input cannot inject Overpass expressions',()=>{
@@ -9,11 +9,12 @@ test('city input cannot inject Overpass expressions',()=>{
  const q=overpassQuery({osm_type:'relation',osm_id:123,boundingbox:['-24','-23','-47','-46']});
  assert.match(q,/area:3600000123/);assert.match(q,/charging_station/);
 });
-test('missing ABVE and parking widen the score instead of becoming zero',()=>{
+test('flow, competition, ABVE and parking remain pending until supported by evidence',()=>{
  const p=normalizePlace({type:'node',id:12,lat:-23.1,lon:-47.1,tags:{name:'Mercado A',shop:'supermarket'}});
  assert.equal(p.parking,null);
- assert.deepEqual(score(p,'AC',null),{low:13,high:83,pending:70,demandKnown:false});
- assert.deepEqual(score({...p,parking:true},'DC',849),{low:52.2,high:87.2,pending:35,demandKnown:true});
+ assert.equal(Object.values(WEIGHTS).reduce((a,b)=>a+b,0),100);
+ assert.deepEqual(score(p,'AC',null),{low:8.5,high:88.5,pending:80,demandKnown:false});
+ assert.deepEqual(score({...p,parking:true},'DC',849),{low:45.7,high:90.7,pending:45,demandKnown:true});
 });
 test('chargers remain distinct from prospects; no operational claim is inferred',()=>{
  const elements=[{type:'node',id:1,lat:-23,lon:-47,tags:{name:'Hotel A',tourism:'hotel'}},{type:'node',id:2,lat:-23.01,lon:-47.01,tags:{name:'Carregador',amenity:'charging_station',access:'customers'}},{type:'node',id:3,lat:-23,lon:-47,tags:{name:'Hotel A',tourism:'hotel'}}];
@@ -48,8 +49,10 @@ test('address context counts mapped chargers without claiming operation or count
  const distant=normalizeCharger({type:'node',id:21,lat:-23.02,lon:-47,tags:{amenity:'charging_station','socket:type2':'2'}});
  const result=enrichReport({kind:'openstreetmap',demand:11284,demandStatus:'ABVE, consulta datada',candidates:[p],chargers:[close,distant]});
  const a=result.candidates[0].analysis;
- assert.equal(a.scores.AC.low,61); // 25 municipal + 16 por categoria + 10 por vaga + 10 por permanência.
- assert.equal(a.scores.DC.fit,16);
+ assert.equal(a.scores.AC.low,52); // 25 municipal + 12 por categoria + 10 por vaga + 5 por permanência.
+ assert.equal(a.scores.DC.fit,12);
+ assert.equal(a.scores.AC.flowPoints,null);
+ assert.equal(a.scores.AC.pending,45);
  assert.equal(a.nearby.within1,1);assert.equal(a.nearby.within3,2);
  assert.equal(a.nearby.nearest[0].mode,'DC');
  assert.match(a.evidence.find(e=>e.label==='Recarga e concorrência').detail,/operação não verificados/);
