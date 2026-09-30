@@ -1,4 +1,5 @@
 export const LIMIT=25;
+export const WEIGHTS=Object.freeze({demand:25,flow:25,competition:20,fit:15,parking:10,stay:5});
 const types={
   hotel:{label:'Hotel / resort',ac:20,dc:8,amen:10},
   mall:{label:'Shopping',ac:16,dc:16,amen:10},
@@ -53,10 +54,12 @@ export function normalizeCharger(el){
 export function distanceKm(a,b){const rad=Math.PI/180,dLat=(b[1]-a[1])*rad,dLon=(b[0]-a[0])*rad,x=Math.sin(dLat/2)**2+Math.cos(a[1]*rad)*Math.cos(b[1]*rad)*Math.sin(dLon/2)**2;return 12742*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
 export function score(p,scenario='AC',demand=null){
  const kind=Object.values(types).find(v=>v.label===p.cat)||types.attraction;
- const fit=scenario==='DC'?kind.dc:kind.ac;
- const d=Number.isFinite(demand)?25*Math.min(1,demand/1000):0;
- const base=d+fit+(p.parking===true?10:0)+(p.amen??kind.amen);
- const pending=25+10+(p.parking===true?0:10)+(Number.isFinite(demand)?0:25);
+ const fit=WEIGHTS.fit*(scenario==='DC'?kind.dc:kind.ac)/20;
+ const d=Number.isFinite(demand)?WEIGHTS.demand*Math.min(1,demand/1000):0;
+ const stay=WEIGHTS.stay*(p.amen??kind.amen)/10;
+ const base=d+fit+(p.parking===true?WEIGHTS.parking:0)+stay;
+ // Sem medição de fluxo calibrada ou vistoria de concorrentes, os dois critérios ficam em aberto.
+ const pending=WEIGHTS.flow+WEIGHTS.competition+(p.parking===true?0:WEIGHTS.parking)+(Number.isFinite(demand)?0:WEIGHTS.demand);
  return {low:+base.toFixed(1),high:+Math.min(100,base+pending).toFixed(1),pending,demandKnown:Number.isFinite(demand)};
 }
 export function nearbyChargers(p,chargers=[]){
@@ -71,7 +74,7 @@ export function analyzePlace(p,report){
  const demand=Number.isFinite(report.demand)?report.demand:null;
  const options=Object.fromEntries(['AC','DC'].map(mode=>{
   const points=score(p,mode,demand);
-  return [mode,{...points,fit:mode==='AC'?kind.ac:kind.dc,demandPoints:demand===null?null:+(25*Math.min(1,demand/1000)).toFixed(1),parkingPoints:p.parking===true?10:0,stayPoints:p.amen??kind.amen}];
+  return [mode,{...points,fit:+(WEIGHTS.fit*(mode==='AC'?kind.ac:kind.dc)/20).toFixed(1),demandPoints:demand===null?null:+(WEIGHTS.demand*Math.min(1,demand/1000)).toFixed(1),parkingPoints:p.parking===true?WEIGHTS.parking:0,stayPoints:+(WEIGHTS.stay*(p.amen??kind.amen)/10).toFixed(1),flowPoints:null}];
  }));
  const context={...nearbyChargers(p,report.chargers),available:report.kind!=='curated'};
  const pilot=report.kind==='curated';
