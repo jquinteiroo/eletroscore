@@ -44,6 +44,7 @@ O piloto de Vinhedo tem somente três posições com coordenadas verificadas ent
 - Os pilotos pesquisados mantêm fichas e fontes próprias. Eles ainda **não têm inventário georreferenciado de recargas integrado**; o painel mostra pendência em vez de zero, mesmo quando existem relatos textuais de recarga nas fichas.
 - Cada local apresenta um quadro de evidências e um roteiro de visita para conferir vaga, circulação, funcionamento de recargas, gestor e energia. A lista automática alterna categorias; dentro de cada categoria prioriza cadastros com estacionamento e endereço preenchidos. Isso organiza visitas, não comprova viabilidade comercial.
 - O quadro de movimento abre uma busca pelo nome e endereço no Google Maps para conferir **horários de pico**, quando o estabelecimento tiver dados suficientes. Confirme que o resultado corresponde ao local da ficha. O gráfico compara horários com o pico semanal do próprio estabelecimento; não fornece número de visitantes e não deve ser comparado como volume absoluto entre lugares. A [documentação de campos da Places API](https://developers.google.com/maps/documentation/places/web-service/data-fields) não oferece uma série de horários de pico para importação pela aplicação web. O app não coleta nem pontua automaticamente esse conteúdo; movimento permanece pendente até uma fonte e método de validação adequados.
+- **Fluxo local vale 25 pontos potenciais na faixa** e fica pendente para todos os locais até haver fonte, amostra e calibração com sessões reais de recarga. Na ficha, um analista pode registrar uma contagem de pessoas ou veículos, horas de observação, data e fonte. O app calcula a taxa por hora e exibe o registro como **informado pelo usuário**, sem pontuar automaticamente. O registro fica no `localStorage` daquele navegador, não é compartilhado entre computadores, e integra o JSON exportado; apagar dados do navegador o remove. Não use as barras relativas do Google Maps como contagem de visitantes.
 - A busca automática inclui hotéis, shoppings, supermercados, restaurantes, adegas, atrações e postos de combustível com nome cadastrado. A amostra exibida continua limitada a 25 locais. O registro de recarga é separado dos candidatos.
 
 Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funcionam sem conexão com serviços externos. Para outras cidades, o servidor consulta Nominatim para resolver o município e Overpass para os cadastros OpenStreetMap. Municípios pequenos podem ser buscados pelo limite cadastrado; cidades extensas usam inicialmente uma área central de cerca de 6 km. Se a primeira consulta falhar por sobrecarga, o app tenta uma segunda instância Overpass com raio de 3 km e identifica o recorte na tela. A busca pode incluir estabelecimentos de municípios vizinhos e não é cobertura integral. O app mantém respostas bem-sucedidas por 24 horas em memória.
@@ -54,7 +55,7 @@ Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funciona
 - **Vinhedo:** 849 BEV + PHEV constam em base secundária Carregados, sem período inicial claro; a informação não foi reconciliada com a tabela municipal ABVE. A nota de demanda é provisória.
 - **Demais cidades:** demanda municipal ABVE fica pendente (0–25 pontos na faixa) até integração com fonte verificável. O app não atribui automaticamente a elas o dado estadual ou o número de municípios vizinhos.
 - **Campinas, Valinhos, Jundiaí, Pouso Alegre e Varginha:** os totais BEV + PHEV municipais consultados no painel ABVE durante os pilotos (jan/2022–ago/2026) foram aproveitados como fotografia datada; outras cidades continuam pendentes. Em Campinas, a demanda igual para toda a cidade contribui com 25 pontos para cada endereço, sem diferenciar bairros.
-- Os registros de carregadores do OSM não garantem funcionamento, potência, preço ou acesso, mesmo quando esses campos estão preenchidos no cadastro. O componente de concorrência (25 pontos) fica pendente para todos. Local ausente do cadastro não significa que ele não existe.
+- Os registros de carregadores do OSM não garantem funcionamento, potência, preço ou acesso, mesmo quando esses campos estão preenchidos no cadastro. O componente de concorrência (20 pontos) fica pendente para todos. Local ausente do cadastro não significa que ele não existe.
 - A classificação de adequação e permanência é uma hipótese por tipo de local; não mede movimento, receita ou retorno. Estacionamento só ganha 10 pontos se estiver documentado na ficha do piloto ou na tag OSM pertinente. Acesso efetivo à vaga de recarga permanece pendente.
 
 ## Método
@@ -62,12 +63,13 @@ Vinhedo e Poços de Caldas têm pilotos de pesquisa em `public/data/` e funciona
 | Critério | Pontos | Estado no MVP |
 | --- | ---: | --- |
 | Demanda BEV + PHEV municipal | 25 | `25 × min(1, emplacamentos / 1000)` quando conhecido; caso contrário 0–25 pendentes |
-| Concorrência operacional | 25 | Pendente: registros não são inspeção |
-| Adequação AC/DC | 20 | Hipótese por categoria; valores explícitos em `src/core.mjs` |
-| Estacionamento e acesso | 20 | 10 por vaga documentada; acesso à recarga pendente |
-| Atração / permanência | 10 | Hipótese por categoria ou pesquisa do piloto |
+| Fluxo local | 25 | Pendente: gráfico de pico não é contagem e registros manuais não têm conversão validada em demanda de recarga |
+| Concorrência operacional | 20 | Pendente: registros não são inspeção |
+| Adequação AC/DC | 15 | Hipótese por categoria; valores proporcionais à matriz em `src/core.mjs` |
+| Estacionamento e acesso | 10 | 10 por vaga cadastrada/documentada; confirmar em campo |
+| Atração / permanência | 5 | Hipótese por categoria ou pesquisa do piloto |
 
-Faixas são **somas de dados municipais, hipóteses por categoria, atributos cadastrados e pontos pendentes**, não intervalos de confiança ou probabilidades de retorno. O número de candidatos automáticos é limitado a 25; a seleção alterna categorias para não listar somente hotéis numa cidade grande. Uma mesma categoria pode repetir a mesma nota quando o cadastro não comprova vagas ou diferenças entre endereços. O contexto de recargas diferencia fichas para investigação, mas não altera a nota sem confirmação de operação. A lista automática é uma amostra diversa, não ranking comercial.
+Faixas são **somas de dados municipais, hipóteses por categoria, atributos cadastrados e pontos pendentes**, não intervalos de confiança ou probabilidades de retorno. O fluxo é um critério importante para decidir quais locais investigar, mas visitantes não equivalem a motoristas de elétricos nem a sessões de recarga. Para estimar viabilidade econômica faltam conversão, duração da parada, preços, custos, ocupação do equipamento e inspeção elétrica. O número de candidatos automáticos é limitado a 25; a seleção alterna categorias para não listar somente hotéis numa cidade grande. Uma mesma categoria pode repetir a mesma nota quando o cadastro não comprova diferenças entre endereços. A lista automática é uma amostra diversa, não ranking comercial.
 
 ## Fontes e limites técnicos
 
