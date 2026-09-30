@@ -15,4 +15,7 @@
 .evidence-row{border-top:1px solid var(--line);padding:9px 0}.evidence-row span{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:700}.evidence-row b{color:var(--green);font-weight:700;text-align:right}.evidence-row b.pending{color:var(--amber)}.evidence-row small{display:block;color:var(--muted);font-size:11px;line-height:1.4;margin-top:3px}
 .evidence-row a{display:inline-block;font-size:11px;margin-top:6px}
 .checklist{padding-left:19px;margin:6px 0}.checklist li{font-size:11px;padding:3px 0}.source-links{line-height:1.7;overflow-wrap:anywhere}
+.flow-panel{margin-top:18px;padding:12px;background:#f1f6eb;border:1px solid var(--line);border-radius:8px}.flow-panel h4{margin:0 0 8px}.flow-panel p{margin:8px 0}
+.flow-form{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.flow-form label{font-size:11px;font-weight:700}.flow-form label:nth-child(3),.flow-form label:nth-child(4),.flow-form label:nth-child(5){grid-column:1/-1}
+.flow-form input,.flow-form select{width:100%;padding:7px;margin-top:3px;background:white;border:1px solid #bdcfbd;border-radius:5px;color:var(--ink)}.flow-form button{border:0;border-radius:6px;background:var(--green);color:#fff;font-weight:700;padding:9px;font-size:11px}.flow-form button.outline{background:transparent;color:var(--ink);border:1px solid var(--line)}#flow-status{grid-column:1/-1;color:var(--amber);font-size:11px;margin:0}
 @media(max-width:600px){.street-map{height:350px}.map-panel .legend{font-size:10px}}
